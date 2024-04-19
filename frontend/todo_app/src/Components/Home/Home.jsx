@@ -12,7 +12,7 @@ export const Home = () => {
         Become focused, organized, and calm with <br />
         todo app. The World's #1 task manager app.
       </p>
-      <button class="home-btn p-2">Make Todo List</button>
+      <button className="home-btn p-2">Make Todo List</button>
     </div>
   </div>
   )

@@ -5,6 +5,7 @@ import { Home } from './Components/Home/Home';
 import  Footer  from './Components/Footer/Footer';
 import { Signup } from './Components/signup/Signup';
 import { Signin } from './Components/signup/Signin';
+import { Todo } from './Components/todo/todo';
 import About from './Components/about/About';
 
 
@@ -19,14 +20,14 @@ function App() {
         <Routes>
           <Route exact path='/' element={<Home/>}></Route>
           <Route path='/about' element={<About/>}></Route>
-          <Route path='/todo' element={<About/>}></Route>
+          <Route path='/todo' element={<Todo/>}></Route>
           <Route path='/signup' element={<Signup/>}></Route>
           <Route path='/signin' element={<Signin/>}></Route>
         </Routes>
         
       </Router>
       <Footer/>
-      
+    
     </>
   );
 }
