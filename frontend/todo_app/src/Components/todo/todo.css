@@ -57,3 +57,58 @@
   justify-content: center;
   align-items: center;
 }
+/* todo.css */
+
+.update-container {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+}
+
+.update-container.visible {
+  display: block;
+}
+
+.update-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+}
+
+.update-heading {
+  text-align: center;
+}
+
+.update-input,
+.update-textarea {
+  width: calc(100% - 40px); /* Subtract padding */
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.update-btn {
+  display: block;
+  width: calc(100% - 40px); /* Subtract padding */
+  margin: 10px 0;
+  padding: 10px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.update-btn:hover {
+  background-color: #555;
+}
+

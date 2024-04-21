@@ -5,6 +5,8 @@ import { useState } from 'react';
 import { TodoCards } from './TodoCards';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Update } from './update';
+
 
 export const Todo = () => {
   const[input , setinput] = useState({title : null, body : null });
@@ -36,9 +38,15 @@ export const Todo = () => {
     setArray(newArray);
     toast.success(`Your task is deleted at id ${id}`)
   }  
-  
+
+  const dis = (value) =>{
+    document.getElementById('update-container').style.display = value;
+  }
+
+
   return (
-    <div className='Todo'>      
+    <>
+    <div className='Todo'>     
     <ToastContainer /> 
       <div className="todo-main container d-flex justify-content-center align-items-center my-4 flex-column">
         <div className="d-flex flex-column todo-inputs-div w-lg-50 w-100 p-1">
@@ -73,14 +81,18 @@ export const Todo = () => {
             <div className='row'>
             {Array && Array.map((item , index) => 
               <div className='col-ig-3 col-3 mx-5 my-2'>
-              <TodoCards title={item.title}  body={item.body} id={index} delid= {del}/>
+              <TodoCards title={item.title}  body={item.body} id={index} delid= {del} display={dis}/>
               </div>)}
             </div>
            </div>
         <div className="div-todo-body"></div>
        </div>     
       </div>
-
-
+        <div className="todo-update " id='.update-container' >
+          <div className='container' >
+          <Update display={dis}/>  
+        </div>
+      </div> 
+    </>
   )
 }
