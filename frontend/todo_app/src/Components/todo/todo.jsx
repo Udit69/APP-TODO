@@ -3,6 +3,8 @@ import "./todo.css"
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { TodoCards } from './TodoCards';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const Todo = () => {
   const[input , setinput] = useState({title : null, body : null });
@@ -18,18 +20,26 @@ export const Todo = () => {
   };
 
   const submit = () => {
-    setArray([...Array, input]);
-    setinput({title : '', body : ''});
+    if (!input.title || !input.body) {
+      toast.error("CANNOT BE EMPTY");
+    } else {
+      setArray([...Array, input]);
+      setinput({ title: '', body: '' });
+      toast.success("YOUR TASK IS ADDED");
+      toast.error("YOUR TASK IS NOT SAVED ! PLEASE SIGNIN");
+    }
   }
   console.log(Array);
 
   const del = (id) => {
     const newArray = [...Array.slice(0, id), ...Array.slice(id + 1)];
     setArray(newArray);
+    toast.success(`Your task is deleted at id ${id}`)
   }  
   
   return (
-    <div className='Todo'>       
+    <div className='Todo'>      
+    <ToastContainer /> 
       <div className="todo-main container d-flex justify-content-center align-items-center my-4 flex-column">
         <div className="d-flex flex-column todo-inputs-div w-lg-50 w-100 p-1">
         <input
