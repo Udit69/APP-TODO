@@ -8,15 +8,13 @@ import { Signin } from './Components/signup/Signin';
 import { Todo } from './Components/todo/todo';
 import About from './Components/about/About';
 
-
-
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 
 function App() {
   return (
-    <>
+    <div className="App">
       <Router>
-      <Navbar />
+        <Navbar />
         <Routes>
           <Route exact path='/' element={<Home/>}></Route>
           <Route path='/about' element={<About/>}></Route>
@@ -24,12 +22,11 @@ function App() {
           <Route path='/signup' element={<Signup/>}></Route>
           <Route path='/signin' element={<Signin/>}></Route>
         </Routes>
-        
       </Router>
-      <Footer/>
-    
-    </>
+      <Footer className="footer"/>
+    </div>
   );
 }
 
 export default App;
+

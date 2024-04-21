@@ -40,3 +40,17 @@
 .read-the-docs {
   color: #888;
 } */
+html, body, #root {
+  height: 100%;
+  margin: 0;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Ensure that App takes at least the full height of the viewport */
+}
+
+.footer {
+  margin-top: auto; /* Push the footer to the bottom of the page */
+}
