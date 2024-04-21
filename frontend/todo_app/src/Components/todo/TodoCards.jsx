@@ -5,7 +5,7 @@ import { GrUpdate } from "react-icons/gr";
 
 
 
-export const TodoCards = ({title , body}) => {
+export const TodoCards = ({title , body , id , delid}) => {
   return (
     <div className='p-3 todo-card'>
       <div>
@@ -16,11 +16,12 @@ export const TodoCards = ({title , body}) => {
       </div>
       <div className=' d-flex justify-content-around'>
         <div className='d-flex justify-contant-center align-items-center card-icon-head px-2 py-1'>
-            <GrUpdate className='card-icons'/>
+            <GrUpdate className='card-icons'/>UPDATE
         </div>
-        <div className='d-flex justify-contant-center align-items-center card-icon-head px-2 py-1 text-danger'>
-            <RiDeleteBin6Fill className='card-icons del' />
-            
+        <div className='d-flex justify-content-center align-items-center card-icon-head px-2 py-1 text-danger' onClick={() => {
+            delid(id);
+        }}>         
+            <RiDeleteBin6Fill className='card-icons del' />DELETE          
         </div>
       </div>
     </div>

@@ -12,8 +12,7 @@ export const Todo = () => {
   };
     
   const change = (e) => {
-    const { name , value} = e.target;
-    
+    const { name , value} = e.target; 
     setinput({ ...input , [name] : value});
 
   };
@@ -23,6 +22,12 @@ export const Todo = () => {
     setinput({title : '', body : ''});
   }
   console.log(Array);
+
+  const del = (id) => {
+    const newArray = [...Array.slice(0, id), ...Array.slice(id + 1)];
+    setArray(newArray);
+  }  
+  
   return (
     <div className='Todo'>       
       <div className="todo-main container d-flex justify-content-center align-items-center my-4 flex-column">
@@ -58,7 +63,7 @@ export const Todo = () => {
             <div className='row'>
             {Array && Array.map((item , index) => 
               <div className='col-ig-3 col-3 mx-5 my-2'>
-              <TodoCards title={item.title}  body={item.body}/>
+              <TodoCards title={item.title}  body={item.body} id={index} delid= {del}/>
               </div>)}
             </div>
            </div>
