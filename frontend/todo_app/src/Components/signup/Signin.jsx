@@ -3,9 +3,12 @@ import './Signup.css';
 import HeadingComp from './Headingcomp';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { authActions } from '../../store';
 
 export const Signin = () => {
   const history = useNavigate();
+  const dispatch = useDispatch();
 
   const [inputs, setInputs] = useState({
     email: '',
@@ -21,18 +24,28 @@ export const Signin = () => {
     e.preventDefault();
     try {
       const response = await axios.post('http://localhost:3000/todo/login', inputs);
-      console.log(response);
-      alert(response.data.message);
-      setInputs({
-        email: '',
-        password: ''
-      });
-      sessionStorage.setItem('id', response.data.others._id);
-      history('/todo');
+      if (response && response.data && response.data.message) {
+        console.log(response);
+        alert(response.data.message);
+        setInputs({
+          email: '',
+          password: ''
+        });
+        dispatch(authActions.login());
+        if (response.data.user && response.data.user._id) {
+          sessionStorage.setItem('id', response.data.user._id);
+        }
+        history('/todo');
+      } else {
+        console.error('Invalid response format:', response);
+        alert('Unexpected response from the server');
+      }
     } catch (error) {
-      alert(error.response.data.message);
+      console.error('Error:', error);
+      alert('An error occurred while processing your request');
     }
   };
+  
 
   return (
     <div className="signup">
