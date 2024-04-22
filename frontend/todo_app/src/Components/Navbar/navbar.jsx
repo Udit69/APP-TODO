@@ -3,9 +3,17 @@ import { Link } from "react-router-dom";
 import "./navbar.css";
 import { MdLibraryBooks } from "react-icons/md";
 import { useSelector } from "react-redux";
+import { useDispatch } from 'react-redux';
+import { authActions } from '../../store';
 
 function Navbar() {
+  const dispatch = useDispatch()
   const isloggedin = useSelector((state) => state.isloggedin);
+  const logout = () => {
+    dispatch(authActions.logout());
+    sessionStorage.clear()
+    window.location.reload();
+  }
   console.log(isloggedin);
   return (
     <div>
@@ -60,9 +68,9 @@ function Navbar() {
               </Link>
             </li>
             </>}
-            {isloggedin && <li className="nav-item" style={{ marginRight: "10px" }}>
-              <Link className="nav-link btn-nav" to="#">
-                Logout <span className="sr-only">(current)</span>
+            {isloggedin && <li className="nav-item" style={{ marginRight: "10px" }} onClick={logout}>
+              <Link className="nav-link btn-nav" to="#" onClick={logout}>
+                Logout <span className="sr-only" onClick={logout}>(current)</span>
               </Link>
             </li>}
             <li className="nav-item">
