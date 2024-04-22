@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import './Signup.css';
 import HeadingComp from './Headingcomp';
 import axios from "axios";
+import { useNavigate } from 'react-router-dom';
 
 export const Signup = () => {
+  const history = useNavigate();
   const [inputs, setInputs] = useState({
     email: '',
     username: '',
@@ -18,17 +20,20 @@ export const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:3000/todo/signin",inputs);
-      console.log(response);
+      const response = await axios.post("http://localhost:3000/todo/signin", inputs);
+      console.log(response.data.others._id); // Log the _id property directly
+      alert(response.data.message);
       setInputs({
         email: '',
         username: '',
         password: ''
       });
+      history('/signin');
     } catch (error) {
-      console.error("Error:", error);
+      alert(error.response.data.message);
     }
   };
+  
   
 
   return (
@@ -37,30 +42,36 @@ export const Signup = () => {
         <div className="row">
           <div className="col-lg-8 column d-flex justify-content-center align-items-center ">
             <div className="d-flex flex-column  w-100 p-3">
-              <input
+            <input
                 className="p-2 my-3 input-signup"
                 type="email"
                 name="email"
                 placeholder="Enter Your Email"
                 onChange={handleChange}
                 value={inputs.email}
+                required // Add the required attribute here
               />
-              <input
-                className="p-2 my-3 input-signup"
-                type="text" // Corrected type to "text"
-                name="username"
-                placeholder="Enter Your Username"
-                onChange={handleChange}
-                value={inputs.username}
-              />
-              <input
-                className="p-2 my-3 input-signup"
-                type="password"
-                name="password"
-                placeholder="Enter Your Password"
-                onChange={handleChange}
-                value={inputs.password}
-              />
+              
+            <input
+              className="p-2 my-3 input-signup"
+              type="text"
+              name="username"
+              placeholder="Enter Your Username"
+              onChange={handleChange}
+              value={inputs.username}
+              required // Add the required attribute here
+            />
+
+            <input
+              className="p-2 my-3 input-signup"
+              type="password"
+              name="password"
+              placeholder="Enter Your Password"
+              onChange={handleChange}
+              value={inputs.password}
+              required // Add the required attribute here
+            />
+
 
               <button className="btn-signup p-2" onClick={handleSubmit}>
                 Sign Up
