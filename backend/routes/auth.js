@@ -1,29 +1,38 @@
 const bcrypt = require("bcrypt");
 const router = require("express").Router();
 const User = require("../Schema/user");
+const checkEmailExists = require("../middleware/email");
+
 
 //signup
 
-router.post("/signin", async (req, res) => {
+router.post("/signin", checkEmailExists, async (req, res) => {
     try {
         const { email, username, password } = req.body;
-        
-        // Hash the password using bcrypt
-        const hashpass = bcrypt.hashSync(password, 10); // 10 is the saltRounds
 
-        // Create a new User object with hashed password
+        if (!email || !username || !password) {
+            return res.status(400).json({ message: 'All fields are required' });
+        }
+
+        const hashpass = bcrypt.hashSync(password, 10);
+
         const user = new User({ email, username, password: hashpass });
 
-        // Save the user to the database
         await user.save();
 
-        // Respond with the created user
-        res.json({ user });
+        res.json({ message: "Signed up successfully" });
     } catch (error) {
         console.error(error);
-        res.status(500).send("Internal Server Error");
+
+        if (error.code === 11000) {
+            res.status(400).json({ message: 'Email already exists' });
+        } else {
+            res.status(500).json({ message: 'Internal server error' });
+        }
     }
 });
+
+
 
 
 //login
