@@ -2,8 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./navbar.css";
 import { MdLibraryBooks } from "react-icons/md";
+import { useSelector } from "react-redux";
 
 function Navbar() {
+  const isloggedin = useSelector((state) => state.isloggedin);
+  console.log(isloggedin);
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -45,7 +48,8 @@ function Navbar() {
                 Todo <span className="sr-only">(current)</span>
               </Link>
             </li>
-            <li className="nav-item" style={{ marginRight: "10px" }}>
+            
+            {!isloggedin && <><li className="nav-item" style={{ marginRight: "10px" }}>
               <Link className="nav-link btn-nav" to="/signup">
                 Sign up <span className="sr-only">(current)</span>
               </Link>
@@ -55,11 +59,12 @@ function Navbar() {
                 Sign in <span className="sr-only">(current)</span>
               </Link>
             </li>
-            <li className="nav-item" style={{ marginRight: "10px" }}>
+            </>}
+            {isloggedin && <li className="nav-item" style={{ marginRight: "10px" }}>
               <Link className="nav-link btn-nav" to="#">
                 Logout <span className="sr-only">(current)</span>
               </Link>
-            </li>
+            </li>}
             <li className="nav-item">
               <Link className="nav-link" to="#">
                 <img
