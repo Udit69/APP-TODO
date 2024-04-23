@@ -6,8 +6,8 @@ const List = require("../Schema/listt");
 
 router.post("/addtodo", async (req, res) => {
     try {
-        const { title, body, email } = req.body;
-        const existingUser = await User.findOne({ email });
+        const { title, body, id } = req.body;
+        const existingUser = await User.findById(id);
         
         if (existingUser) {
             const list = new List({ title, body, user: existingUser });
@@ -30,17 +30,9 @@ router.post("/addtodo", async (req, res) => {
 
 router.put("/updatetask/:id", async (req, res) => {
     try {
-        const { title, body, email } = req.body;
+        const { title, body } = req.body;
 
-        // Find the user by email
-        const existingUser = await User.findOne({ email });
-
-        // Check if user exists
-        if (!existingUser) {
-            return res.status(404).json({ message: "User not found" });
-        }
-
-        // Update the list item associated with the user
+        // Update the list item
         const updatedList = await List.findByIdAndUpdate(req.params.id, { title, body }, { new: true });
 
         // Check if list item exists
@@ -55,25 +47,24 @@ router.put("/updatetask/:id", async (req, res) => {
     }
 });
 
+
 //deleteTODO
 
-router.delete("/deletetask/:id", async (req, res) => {
+router.delete("/deleteTask/:id", async (req, res) => {
     try {
-        const { email } = req.body;
-        const existingUser = await User.findOne({ email });
-        if (!existingUser) {
-            return res.status(404).json({ message: "User not found" });
-        }
-        const DeleteList = await List.findByIdAndDelete(req.params.id);
-        if (!DeleteList) {
-            return res.status(404).json({ message: "List item not found" });
-        }
-        res.status(200).json({ message: "List item Deleted successfully" });
+      const { id } = req.body;
+      const existingUser = await User.findByIdAndUpdate(id, {
+        $pull: { list: req.params.id },
+      });
+      if (existingUser) {
+        await List.findByIdAndDelete(req.params.id).then(() =>
+          res.status(200).json({ message: "Task Deleted" })
+        );
+      }
     } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: "Internal server error" });
+      console.log(error);
     }
-});
+  });
 
 //Getlist
 
