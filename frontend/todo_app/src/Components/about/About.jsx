@@ -9,26 +9,11 @@ const About = () => {
         </div>
 
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa, ad? Non
-          animi facere vero nostrum qui repudiandae, nihil recusandae amet
-          quisquam dicta quos, praesentium ipsam libero distinctio ea, atque
-          deleniti? Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-          Distinctio rerum modi, velit iusto fuga necessitatibus dicta molestias
-          facere numquam natus quibusdam, error sunt. Eveniet iure modi est
-          recusandae, quasi ut?Lorem ipsum dolor sit amet consectetur
-          adipisicing elit. Amet, quae. Atque accusamus explicabo perferendis at
-          illum laudantium eos velit cumque vero, odio illo ipsum hic earum
-          alias cupiditate minima a! <br />
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa, ad? Non
-          animi facere vero nostrum qui repudiandae, nihil recusandae amet
-          quisquam dicta quos, praesentium ipsam libero distinctio ea, atque
-          deleniti? Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-          Distinctio rerum modi, velit iusto fuga necessitatibus dicta molestias
-          facere numquam natus quibusdam, error sunt. Eveniet iure modi est
-          recusandae, quasi ut?Lorem ipsum dolor sit amet consectetur
-          adipisicing elit. Amet, quae. Atque accusamus explicabo perferendis at
-          illum laudantium eos velit cumque vero, odio illo ipsum hic earum
-          alias cupiditate minima a!
+      
+
+---
+
+Greetings! I'm Udit Bhadauria, an enthusiastic aspiring software engineer with a passion for crafting innovative solutions in the digital realm. Currently embarking on my journey through the realm of academia, I find myself navigating the dynamic world of undergraduate studies. With a keen interest in modern technologies, I've delved into the intricacies of the MERN stack and web development, honing my skills to harness the power of this versatile toolset. As I stride through my first year of undergraduate studies, I eagerly anticipate the challenges and triumphs that lie ahead, fueled by my fervent drive to explore, innovate, and contribute to the ever-evolving landscape of software engineering. Join me as I embark on this exhilarating adventure towards realizing my aspirations in the realm of technology.
         </p>
       </div>
     </div>

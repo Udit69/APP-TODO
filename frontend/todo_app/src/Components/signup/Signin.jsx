@@ -53,6 +53,12 @@ export const Signin = () => {
         <div className="row">
           <div className="col-lg-8 column d-flex justify-content-center align-items-center ">
             <div className="d-flex flex-column w-100 p-3">
+              <p>FOR EXAMPLE USE 
+                <br />
+                Email:  udit132@gmail.com 
+                <br />
+                PASSWORD : udit132
+              </p>
               <input
                 className="p-2 my-3 input-signup"
                 type="email"
