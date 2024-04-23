@@ -11,7 +11,7 @@ function Navbar() {
   const isloggedin = useSelector((state) => state.isloggedin);
   const logout = () => {
     dispatch(authActions.logout());
-    sessionStorage.clear()
+    sessionStorage.removeItem("id");
     window.location.reload();
   }
   console.log(isloggedin);
@@ -69,8 +69,8 @@ function Navbar() {
             </li>
             </>}
             {isloggedin && <li className="nav-item" style={{ marginRight: "10px" }} onClick={logout}>
-              <Link className="nav-link btn-nav" to="#" onClick={logout}>
-                Logout <span className="sr-only" onClick={logout}>(current)</span>
+              <Link className="nav-link btn-nav" to="#" >
+                Logout <span className="sr-only" >(current)</span>
               </Link>
             </li>}
             <li className="nav-item">

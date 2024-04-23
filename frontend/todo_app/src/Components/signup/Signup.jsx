@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 export const Signup = () => {
   const history = useNavigate();
+
   const [inputs, setInputs] = useState({
     email: '',
     username: '',
@@ -21,8 +22,7 @@ export const Signup = () => {
     e.preventDefault();
     try {
       const response = await axios.post("http://localhost:3000/todo/signin", inputs);
-      console.log(response.data.others._id); // Log the _id property directly
-      alert(response.data.message);
+      console.log(response); // Log the _id property directly
       setInputs({
         email: '',
         username: '',
@@ -30,7 +30,7 @@ export const Signup = () => {
       });
       history('/signin');
     } catch (error) {
-      alert(error.response.data.message);
+      console.error('Error:', error);
     }
   };
   
